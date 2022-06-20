@@ -1,11 +1,11 @@
 from os import remove
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer   
 import string
-import nltk
-from nltk.corpus import stopwords
-import fitz
+import nltk    #natural language toolkit
+from nltk.corpus import stopwords          #frequent used words which will create problem while doing classification
+import fitz    #it reads the content of the pdf, and also converts into text
 import pickle
 
 nltk.download('stopwords')
@@ -23,9 +23,8 @@ def pre_process_df():
 def input_process(text):
     translator = str.maketrans('', '', string.punctuation)
     nopunc = text.translate(translator)
-    words = [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]
+    words = [word for word in nopunc.split() if word.lower() not in stopwords.words('english')]    #list comprehension method : maxm list operation lai single line of code ma lekhne
     return ' '.join(words)
-
 
 
 def remove_stop_words(input):
